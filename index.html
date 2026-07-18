@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spomen stranica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="cover" id="cover">
+  <img class="cover-img" id="coverImg" src="" alt="Naslovna fotografija">
+  <div class="cover-overlay"></div>
+</header>
+
+<div class="page">
+
+  <main class="card">
+    <div class="portrait-wrap">
+      <div class="portrait-glow"></div>
+      <img class="portrait" id="portraitImg" src="" alt="Portret">
+    </div>
+
+    <h1 class="name" id="nameEl"></h1>
+    <p class="lifetime"><span id="bornEl"></span> &nbsp;–&nbsp; <span id="diedEl"></span></p>
+
+    <button class="flame-btn" id="musicToggle" aria-label="Pusti glazbu u sjećanje">
+      <svg class="flame-icon" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="flame-outer" d="M12 1C12 1 5 9 5 17.5C5 24 8.5 29 13 29C18 29 20.5 24.5 20.5 20C20.5 14.5 17 12 17 12C17 12 18 16 15.5 18C15.5 18 16 14 12 8.5C12 8.5 11.5 13 8.5 16C6.5 18.2 6.5 20.5 8 23" stroke-linecap="round" stroke-linejoin="round"/>
+        <path class="flame-inner" d="M12 15C12 15 9.5 18 9.5 21C9.5 23.5 10.5 25.5 12.5 25.5C14.7 25.5 15.5 23.3 15.5 21.5C15.5 18.7 13 17 13 17"/>
+      </svg>
+      <span class="flame-label" id="musicLabel">Zapali svijeću za glazbu</span>
+    </button>
+    <audio id="bgMusic" loop preload="none"></audio>
+
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="photos" role="tab">Fotografije</button>
+      <button class="tab" data-tab="videos" role="tab">Videozapisi</button>
+    </nav>
+
+    <section class="panel active" id="panel-photos">
+      <div class="gallery" id="gallery"></div>
+      <p class="empty-hint" id="photosEmpty" hidden>Fotografije će se pojaviti ovdje.</p>
+    </section>
+
+    <section class="panel" id="panel-videos">
+      <div class="videos" id="videoList"></div>
+      <p class="empty-hint" id="videosEmpty" hidden>Videozapisi će se pojaviti ovdje.</p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span class="ember-dot"></span>
+    <p>U vječnoj uspomeni</p>
+  </footer>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
