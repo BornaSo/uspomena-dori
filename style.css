@@ -35,8 +35,8 @@ html,body{
 /* ---- Cover ---- */
 .cover{
   width: 100%;      /* zadrži svoju trenutnu vrijednost ako si je mijenjao/la, npr. 90% */
-  aspect-ratio: 21 / 9;
-  max-height: 420px;
+  aspect-ratio: 4 / 3;   /* na mobitelu viša slika, da se lice/prizor ne odreže previše */
+  max-height: 340px;
   background-color: var(--surface-2);
   position: relative;
   overflow: hidden;
@@ -45,8 +45,16 @@ html,body{
 .cover-img{
   width: 100%;
   height: 100%;
-  object-fit: 100% cover;
+  object-fit: cover;
+  object-position: center;
   display: block;
+}
+
+@media (min-width: 600px){
+  .cover{
+    aspect-ratio: 21 / 9;   /* na tabletu/desktopu širi, panoramski format */
+    max-height: 420px;
+  }
 }
 .cover-overlay{
   position: absolute; inset: 0;
