@@ -50,7 +50,7 @@ html,body{
 }
 .cover-overlay{
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(21,16,13,0.15) 0%, rgba(21,16,13,0.55) 65%, var(--bg) 100%);
+  background: linear-gradient(20deg, rgba(21,16,13,0.15) 0%, rgba(21,16,13,0.55) 65%, var(--bg) 100%);
 }
 
 /* ---- Card / profile ---- */
