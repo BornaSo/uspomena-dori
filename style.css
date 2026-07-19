@@ -36,6 +36,7 @@ html,body{
 .cover{
   width: 100%;
   height: clamp(200px, 45vw, 420px);  /* fluidna visina: raste/pada glatko s širinom ekrana, bez naglih skokova */
+  background-color: var(--surface-2);
   position: relative;
   overflow: hidden;
 }
@@ -49,7 +50,7 @@ html,body{
 }
 .cover-overlay{
   position: absolute; inset: 0;
-  background: linear-gradient(60deg, rgba(21,16,13,0.15) 0%, rgba(21,16,13,0.55) 65%, var(--bg) 100%);
+  background: linear-gradient(90deg, rgba(21,16,13,0.15) 0%, rgba(21,16,13,0.55) 65%, var(--bg) 100%);
 }
 
 /* ---- Card / profile ---- */
@@ -60,10 +61,9 @@ html,body{
 }
 
 .portrait-wrap{
-  --portrait-size: clamp(130px, 22vw, 185px);
-  width: var(--portrait-size); height: var(--portrait-size);
-  margin: 24px auto 18px;   /* više nema negativne margine — bez preklapanja */
-  
+  width: 185px; height: 185px;
+  margin: -92px auto 18px;
+  position: relative;
 }
 
 .portrait-glow{
@@ -180,22 +180,88 @@ html,body{
   font-style: italic;
 }
 
-/* ---- Gallery ---- */
-.gallery{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-}
-.gallery img{
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  border-radius: 10px;
-  cursor: pointer;
+/* ---- Gallery slider (jedna fotografija po jedna, swipe / strelice) ---- */
+.slider{
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface-2);
   border: 1px solid var(--line);
-  transition: transform 0.2s ease, border-color 0.2s ease;
 }
-.gallery img:hover{ transform: scale(1.03); border-color: var(--ember); }
+.slider-track{
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.slider-track::-webkit-scrollbar{ display: none; }
+
+.slide{
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.slide img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: zoom-in;
+  display: block;
+}
+
+.slider-arrow{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: rgba(21,16,13,0.55);
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(2px);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.slider-arrow:hover{ background: rgba(21,16,13,0.8); border-color: var(--ember); }
+.slider-arrow:focus-visible{ outline: 2px solid var(--ember); outline-offset: 2px; }
+.slider-arrow.prev{ left: 10px; }
+.slider-arrow.next{ right: 10px; }
+
+.slider-dots{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 14px;
+}
+.slider-dot{
+  width: 7px; height: 7px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--line);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.slider-dot.active{ background: var(--ember); transform: scale(1.35); }
+.slider-dot:focus-visible{ outline: 2px solid var(--ember); outline-offset: 2px; }
+
+@media (hover: none){
+  /* na dodirnim ekranima strelice su suvišne jer se prevlači prstom */
+  .slider-arrow{ opacity: 0.75; }
+}
 
 /* ---- Videos ---- */
 .videos{ display: flex; flex-direction: column; gap: 20px; }
@@ -253,5 +319,10 @@ html,body{
 
 @media (max-width: 480px){
   .card{ padding: 0 18px 8px; }
-  .gallery{ grid-template-columns: repeat(2, 1fr); }
+  .slider-arrow{ width: 32px; height: 32px; font-size: 17px; }
+}
+
+@media (max-width: 360px){
+  .portrait-wrap{ width: 150px; height: 150px; margin-top: -75px; }
+  .name{ font-size: clamp(24px, 7vw, 30px); }
 }

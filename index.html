@@ -42,7 +42,12 @@
     </nav>
 
     <section class="panel active" id="panel-photos">
-      <div class="gallery" id="gallery"></div>
+      <div class="slider" id="photoSlider">
+        <div class="slider-track" id="sliderTrack"></div>
+        <button class="slider-arrow prev" id="prevBtn" aria-label="Prethodna fotografija" type="button">‹</button>
+        <button class="slider-arrow next" id="nextBtn" aria-label="Sljedeća fotografija" type="button">›</button>
+      </div>
+      <div class="slider-dots" id="sliderDots"></div>
       <p class="empty-hint" id="photosEmpty" hidden>Fotografije će se pojaviti ovdje.</p>
     </section>
 

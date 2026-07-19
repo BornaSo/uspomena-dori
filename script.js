@@ -52,20 +52,72 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- Fotografije ---
-  const gallery = document.getElementById('gallery');
+  // --- Fotografije (slider) ---
+  const photoSlider = document.getElementById('photoSlider');
+  const sliderTrack = document.getElementById('sliderTrack');
+  const sliderDots = document.getElementById('sliderDots');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
   const photos = data.photos || [];
+
   if (photos.length === 0) {
     document.getElementById('photosEmpty').hidden = false;
+    photoSlider.style.display = 'none';
+    sliderDots.style.display = 'none';
   } else {
-    photos.forEach(src => {
+    photos.forEach((src, i) => {
+      const slide = document.createElement('div');
+      slide.className = 'slide';
+
       const img = document.createElement('img');
       img.src = src;
       img.alt = data.name || 'Fotografija';
       img.loading = 'lazy';
       img.addEventListener('click', () => openLightbox(src));
-      gallery.appendChild(img);
+      slide.appendChild(img);
+      sliderTrack.appendChild(slide);
+
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', `Fotografija ${i + 1}`);
+      dot.addEventListener('click', () => scrollToSlide(i));
+      sliderDots.appendChild(dot);
     });
+
+    const dots = sliderDots.querySelectorAll('.slider-dot');
+
+    function currentIndex(){
+      return Math.round(sliderTrack.scrollLeft / sliderTrack.clientWidth);
+    }
+
+    function scrollToSlide(i){
+      const clamped = Math.max(0, Math.min(photos.length - 1, i));
+      sliderTrack.scrollTo({ left: clamped * sliderTrack.clientWidth, behavior: 'smooth' });
+    }
+
+    function updateActiveDot(){
+      const i = currentIndex();
+      dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+    }
+
+    let scrollTimeout;
+    sliderTrack.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(updateActiveDot, 80);
+    });
+
+    prevBtn.addEventListener('click', () => scrollToSlide(currentIndex() - 1));
+    nextBtn.addEventListener('click', () => scrollToSlide(currentIndex() + 1));
+
+    // ako promjena veličine ekrana pomakne poziciju, poravnaj na najbliži slide
+    window.addEventListener('resize', () => scrollToSlide(currentIndex()));
+
+    if (photos.length <= 1) {
+      prevBtn.style.display = 'none';
+      nextBtn.style.display = 'none';
+      sliderDots.style.display = 'none';
+    }
   }
 
   // --- Videozapisi ---
