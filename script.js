@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
       img.src = src;
       img.alt = data.name || 'Fotografija';
       img.loading = 'lazy';
-      img.addEventListener('click', () => openLightbox(src));
+      img.addEventListener('click', () => openLightbox(i));
       slide.appendChild(img);
       sliderTrack.appendChild(slide);
 
@@ -154,12 +154,63 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Lightbox za fotografije ---
+  // --- Lightbox za fotografije (s navigacijom) ---
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
-  function openLightbox(src) {
-    lightboxImg.src = src;
+  const lightboxPrev = document.getElementById('lightboxPrev');
+  const lightboxNext = document.getElementById('lightboxNext');
+  const lightboxClose = document.getElementById('lightboxClose');
+  let lightboxIndex = 0;
+
+  function updateLightboxNav(){
+    const multiple = photos.length > 1;
+    lightboxPrev.style.display = multiple ? '' : 'none';
+    lightboxNext.style.display = multiple ? '' : 'none';
+  }
+
+  function showLightboxPhoto(i){
+    lightboxIndex = (i + photos.length) % photos.length;
+    lightboxImg.src = photos[lightboxIndex];
+  }
+
+  function openLightbox(i) {
+    if (!photos.length) return;
+    showLightboxPhoto(i);
+    updateLightboxNav();
     lightbox.classList.add('open');
   }
-  lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+
+  function closeLightbox(){
+    lightbox.classList.remove('open');
+  }
+
+  lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); showLightboxPhoto(lightboxIndex - 1); });
+  lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); showLightboxPhoto(lightboxIndex + 1); });
+  lightboxClose.addEventListener('click', (e) => { e.stopPropagation(); closeLightbox(); });
+
+  // klik na pozadinu zatvara, klik na sliku/strelice ne zatvara
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showLightboxPhoto(lightboxIndex - 1);
+    if (e.key === 'ArrowRight') showLightboxPhoto(lightboxIndex + 1);
+  });
+
+  // prevlačenje prstom (swipe) unutar uvećanog prikaza
+  let touchStartX = null;
+  lightbox.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].clientX;
+  }, { passive: true });
+  lightbox.addEventListener('touchend', (e) => {
+    if (touchStartX === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) {
+      dx > 0 ? showLightboxPhoto(lightboxIndex - 1) : showLightboxPhoto(lightboxIndex + 1);
+    }
+    touchStartX = null;
+  });
 });

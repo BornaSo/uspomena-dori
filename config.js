@@ -16,7 +16,7 @@ window.MEMORIAL = {
 
   // Stih / citat pri vrhu stranice (umjesto naslovne fotografije)
   // Upišite ga točno kako želite da piše — može imati više rečenica.
-  quote: "Noću ćeš gledati zvijezde. Moja je premalena da bih ti je mogao pokazati. Bolje je ovako. Moja će zvijezda za tebe biti jedna od mnogih. Tako ćeš voljeti promatrati sve zvijezde... Sve će one biti tvoje",
+  quote: "Noću ćeš gledati zvijezde. Moja je premalena da bih ti je mogao pokazati. Bolje je ovako. Moja će zvijezda za tebe biti jedna od mnogih. Tako ćeš voljeti promatrati sve zvijezde... Sve će one biti tvoje prijateljice...",
 
   // Portret (okrugla slika) — stavite datoteku u folder "photos"
   portrait: "photos/portrait.jpg",
@@ -42,6 +42,7 @@ window.MEMORIAL = {
     "photos/photo15.jpg",
     "photos/photo16.jpg",
     "photos/photo17.jpg",
+    "photos/photo18.jpg",
     // "photos/photo3.jpg",
   ],
 
@@ -51,7 +52,7 @@ window.MEMORIAL = {
   //  2) Vlastita video datoteka: { type: "file", src: "videos/naziv.mp4", caption: "Opis (opcionalno)" }
   videos: [
     // { type: "youtube", id: "dQw4w9WgXcQ", caption: "Obiteljsko slavlje, 2019." },
-    // { type: "file", src: "videos/video1.mp4", caption: "Rođendan, 2015." },
+    { type: "file", src: "videos/video1.mp4", caption: "Uspomene" },
   ],
 
 };
