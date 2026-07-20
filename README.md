@@ -9,8 +9,8 @@ GitHub Pages i povezati s QR kodom na nadgrobnom spomeniku.
   Otvorite je u bilo kojem uređivaču teksta (čak i na GitHubu, klikom na olovčicu ✏️).
 - **Fotografije** → stavite `.jpg` ili `.png` datoteke u folder `photos/`, a zatim
   dodajte naziv datoteke u popis `photos:` unutar `config.js`.
-- **Naslovna slika i portret** → zamijenite `photos/cover.jpg` i `photos/portrait.jpg`
-  svojim slikama (može i drugi naziv, samo ga upišite u `config.js`).
+- **Naslovni stih** → tekst pri vrhu stranice mijenja se u `config.js`, pod `quote:`.
+- **Portret** → zamijenite `photos/portrait.jpg` svojom slikom (može i drugi naziv, samo ga upišite u `config.js`).
 - **Glazba** → stavite `.mp3` datoteku u folder `music/` i upišite putanju u `music:`
   (npr. `music/song.mp3`). Ako ne želite glazbu, ostavite `music: ""`.
 - **Videozapisi** → najlakše je koristiti YouTube (privatan/neizlistan video je u redu),

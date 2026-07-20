@@ -32,25 +32,59 @@ html,body{
   position: relative;
 }
 
-/* ---- Cover (samostalan, potpuno responzivan kontejner samo za naslovnu sliku) ---- */
+/* ---- Cover (stih umjesto naslovne fotografije) ---- */
 .cover{
   width: 100%;
-  height: clamp(200px, 45vw, 420px);  /* fluidna visina: raste/pada glatko s širinom ekrana, bez naglih skokova */
-  background-color: var(--surface-2);
   position: relative;
   overflow: hidden;
 }
 
-.cover-img{
-  width: 100%;
-  height: 100%;
-  object-fit: contain;   /* prikazuje cijelu fotografiju, bez rezanja */
-  object-position: center;
-  display: block;
+.cover-quote{
+  min-height: clamp(200px, 40vw, 360px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* donji razmak je namjerno veći od preklapanja portreta (do 92px)
+     tako da stih nikad ne završi ispod slike, koliko god se prelomio */
+  padding: 56px 34px 120px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(226,147,63,0.10) 0%, transparent 60%),
+    linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 55%, var(--bg) 100%);
 }
-.cover-overlay{
-  position: absolute; inset: 0;
-  background: linear-gradient(90deg, rgba(21,16,13,0.15) 0%, rgba(21,16,13,0.55) 65%, var(--bg) 100%);
+
+.cover-quote-text{
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(17px, 3.1vw, 23px);
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 480px;
+  margin: 0;
+  letter-spacing: 0.1px;
+  quotes: "\201C" "\201D";
+}
+.cover-quote-text::before,
+.cover-quote-text::after{
+  content: open-quote;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  color: var(--ember);
+  opacity: 0.75;
+}
+.cover-quote-text::after{ content: close-quote; }
+
+.cover-spark{
+  position: absolute;
+  bottom: 100px; left: 50%;
+  transform: translateX(-50%);
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--ember);
+  box-shadow: 0 0 10px 3px var(--ember-soft);
+  animation: pulse-glow 4s ease-in-out infinite;
 }
 
 /* ---- Card / profile ---- */

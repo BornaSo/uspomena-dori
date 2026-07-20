@@ -14,8 +14,9 @@ window.MEMORIAL = {
   born: "11. prosinac 1999.",
   died: "3. rujan 2024.",
 
-  // Naslovna fotografija (velika slika pri vrhu) — stavite datoteku u folder "photos"
-  coverPhoto: "photos/cover.jpg",
+  // Stih / citat pri vrhu stranice (umjesto naslovne fotografije)
+  // Upišite ga točno kako želite da piše — može imati više rečenica.
+  quote: "Živjet ću na jednoj od zvijezda. Smijat ću se na njoj. I tako, bit će kao da se sve zvijezde na nebu smiju, kada pogledaš noću u nebo. I samo ti ćeš imati zvijezde koje se smiju.",
 
   // Portret (okrugla slika) — stavite datoteku u folder "photos"
   portrait: "photos/portrait.jpg",
@@ -39,6 +40,8 @@ window.MEMORIAL = {
     "photos/photo13.jpg",
     "photos/photo14.jpg",
     "photos/photo15.jpg",
+    "photos/photo16.jpg",
+    "photos/photo17.jpg",
     // "photos/photo3.jpg",
   ],
 

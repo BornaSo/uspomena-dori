@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('bornEl').textContent = data.born || '';
   document.getElementById('diedEl').textContent = data.died || '';
 
-  if (data.coverPhoto) {
-    document.getElementById('coverImg').src = data.coverPhoto;
+  if (data.quote) {
+    document.getElementById('coverQuote').textContent = data.quote;
   }
   if (data.portrait) {
     document.getElementById('portraitImg').src = data.portrait;
