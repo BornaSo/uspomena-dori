@@ -16,7 +16,7 @@ window.MEMORIAL = {
 
   // Stih / citat pri vrhu stranice (umjesto naslovne fotografije)
   // Upišite ga točno kako želite da piše — može imati više rečenica.
-  quote: "Živjet ću na jednoj od zvijezda. Smijat ću se na njoj. I tako, bit će kao da se sve zvijezde na nebu smiju, kada pogledaš noću u nebo. I samo ti ćeš imati zvijezde koje se smiju.",
+  quote: "Noću ćeš gledati zvijezde. Moja je premalena da bih ti je mogao pokazati. Bolje je ovako. Moja će zvijezda za tebe biti jedna od mnogih. Tako ćeš voljeti promatrati sve zvijezde... Sve će one biti tvoje",
 
   // Portret (okrugla slika) — stavite datoteku u folder "photos"
   portrait: "photos/portrait.jpg",
